@@ -10,7 +10,16 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "sans-serif"],
+        sans: [
+          '"Pretendard Variable"',
+          "Pretendard",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "system-ui",
+          '"Apple SD Gothic Neo"',
+          '"Noto Sans KR"',
+          "sans-serif",
+        ],
       },
       keyframes: {
         // 풍선처럼 위아래로 둥실거리며 살짝 흔들림

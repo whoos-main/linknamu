@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "링크나무",
   description: "내 모든 링크를 한 페이지에 모아두고, 하나의 URL로 공유하는 서비스",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fdeeee" },
+    { media: "(prefers-color-scheme: dark)", color: "#1c1317" },
+  ],
 };
 
 // 첫 화면이 그려지기 전에 저장된 테마(없으면 시스템 설정)를 적용해 깜빡임 방지
@@ -25,10 +25,14 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {/* Pretendard: 페이지에 쓰인 글자만 내려받는 dynamic subset 버전 */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
       </head>
-      <body className={`${geistSans.variable} font-sans antialiased`}>
-        {children}
-      </body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }
